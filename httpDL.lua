@@ -7,6 +7,7 @@ local M = {}
 _G[moduleName] = M
 
 function M.download(host, port, url, path, callback)
+	file.remove(path);
 	file.open(path, "w+")
 
 	conn=net.createConnection(net.TCP, false) 
