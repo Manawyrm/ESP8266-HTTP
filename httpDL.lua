@@ -10,9 +10,9 @@ function M.download(host, port, url, path, callback)
 	file.remove(path);
 	file.open(path, "w+")
 
+	payloadFound = false
 	conn=net.createConnection(net.TCP, false) 
 	conn:on("receive", function(conn, payload)
-		payloadFound = false
 
 		if (payloadFound == true) then
 			file.write(payload)
