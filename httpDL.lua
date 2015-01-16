@@ -39,6 +39,7 @@ function M.download(host, port, url, path, callback)
 			  "Connection: close\r\n"..
 			  "Accept-Charset: utf-8\r\n"..
 			  "Accept-Encoding: \r\n"..
+			  "User-Agent: Mozilla/4.0 (compatible; esp8266 Lua; Windows NT 5.1)\r\n".. 
 			  "Accept: */*\r\n\r\n")
 end
 return M
