@@ -22,13 +22,15 @@ function M.get(host, port, url, args, callback)
 		inputbuffer = string.sub(inputbuffer,string.find(inputbuffer,"\r\n\r\n") + 4)
 		callback(inputbuffer)
 	end)
-	conn:connect(port,host)
-	conn:send("GET /"..url..argsstr.." HTTP/1.0\r\n"..
+	conn:on("connection", function(conn)
+		conn:send("GET /"..url..argsstr.." HTTP/1.0\r\n"..
 			  "Host: "..host.."\r\n"..
 			  "Connection: close\r\n"..
 			  "Accept-Charset: utf-8\r\n"..
 			  "Accept-Encoding: \r\n"..
 			  "Accept: */*\r\n\r\n")
+	end)
+	conn:connect(port,host)
 end
 function M.url_encode(str)
 	if (str) then
