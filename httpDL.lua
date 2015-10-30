@@ -33,9 +33,8 @@ function M.download(host, port, url, path, callback)
 		file.close()
 		callback("ok")
 	end)
-	conn:connect(port,host)
 	conn:on("connection", function(conn)
-	conn:send("GET /"..url.." HTTP/1.0\r\n"..
+		conn:send("GET /"..url.." HTTP/1.0\r\n"..
 			  "Host: "..host.."\r\n"..
 			  "Connection: close\r\n"..
 			  "Accept-Charset: utf-8\r\n"..
@@ -43,5 +42,6 @@ function M.download(host, port, url, path, callback)
 			  "User-Agent: Mozilla/4.0 (compatible; esp8266 Lua; Windows NT 5.1)\r\n".. 
 			  "Accept: */*\r\n\r\n")
 	end)
+	conn:connect(port,host)
 end
 return M
